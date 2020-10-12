@@ -2,7 +2,7 @@ from spinup import td3_pytorch
 import torch as th
 import gym
 
-env_fn = lambda : gym.wrappers.FlattenObservation(gym.wrappers.FilterObservation(gym.make('FetchPush-v1'), ['observation', 'desired_goal']))
+env_fn = lambda : gym.wrappers.FlattenObservation(gym.wrappers.FilterObservation(gym.make('FetchPush-v1', reward_type='dense'), ['observation', 'desired_goal']))
 
 ac_kwargs = dict(hidden_sizes=[512, 512, 64], activation=th.nn.ReLU)
 
