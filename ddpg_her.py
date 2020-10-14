@@ -4,7 +4,7 @@ import gym
 
 env_fn = lambda : gym.make('FetchPush-v1')
 
-ac_kwargs = dict(hidden_sizes=[512, 512], activation=th.nn.ReLU)
+ac_kwargs = dict(hidden_sizes=[64, 64, 64], activation=th.nn.ReLU)
 
 logger_kwargs = dict(output_dir='data/push_0', exp_name='push_0')
 
