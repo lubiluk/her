@@ -3,11 +3,13 @@ import torch as th
 import gym
 import wrappers
 
-env_fn = lambda : wrappers.DoneOnSuccessWrapper(gym.make('FetchPush-v1'), reward_offset=0)
+env_fn = lambda : wrappers.DoneOnSuccessWrapper(gym.make('FetchPush-v1'))
 
-ac_kwargs = dict(hidden_sizes=[64, 64, 64], activation=th.nn.ReLU)
+ac_kwargs = dict(hidden_sizes=[64, 64], activation=th.nn.ReLU)
 
-logger_kwargs = dict(output_dir='data/fetch_push_ddpg_her_0', exp_name='fetch_push_ddpg_her_0')
+logger_kwargs = dict(
+    output_dir='data/fetch_push_ddpg_her_0', 
+    exp_name='fetch_push_ddpg_her_0')
 
 ddpg_her_pytorch(
     env_fn=env_fn, 
@@ -20,5 +22,6 @@ ddpg_her_pytorch(
     gamma=0.95,
     q_lr=0.001,
     pi_lr=0.001,
-
+    num_additional_goals=4,
+    goal_selection_strategy='future',
     logger_kwargs=logger_kwargs)
